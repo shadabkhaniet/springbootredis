@@ -1,0 +1,18 @@
+{
+    "family": "springboot-redis",
+    "containerDefinitions": [
+        {
+            "image": "registry.hub.docker.com/shadabkhaniet/springboot_redis:v_%BUILD_NUMBER%",
+            "name": "springboot-redis",
+            "cpu": 10,
+            "memory": 256,
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 5000,
+                    "hostPort": 80
+                }
+            ]
+        }
+    ]
+}
