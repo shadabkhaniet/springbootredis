@@ -1,5 +1,6 @@
 package com.springboot.example;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,8 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.ScanParams;
 import redis.clients.jedis.ScanResult;
 
+import org.springframework.web.bind.annotation.RequestMethod;
+
 @RestController
 public class HelloController {
 
@@ -26,11 +29,21 @@ public class HelloController {
         return "home";
     }
 
-    @RequestMapping("/add")
-    public String index() {
+    @RequestMapping(value="/add", method=RequestMethod.POST)
+    public String index(@RequestParam(value="Name", required=false) String name, @RequestParam(value="Age", required=false) String age,@RequestParam(value="Email", required=false) String email) {
 
         System.err.println("in index method");
-  
+ 	Jedis jedis = jedisPool.getResource();
+Map<String,String> userValues = new HashMap<String,String>();
+userValues.put("Name", name);
+userValues.put("Age", age);
+userValues.put("Email", email);
+
+jedis.hmset("USER_"+email, userValues);
+
+jedis.close();
+
+
 
         return "Greetings from Spring Boot!";
     }

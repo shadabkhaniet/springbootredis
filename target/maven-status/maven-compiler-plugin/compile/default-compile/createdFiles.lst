@@ -1,4 +1,4 @@
-com/springboot/example/HelloController.class
-com/springboot/example/JSPController.class
 com/springboot/example/Application.class
+com/springboot/example/JSPController.class
+com/springboot/example/HelloController.class
 com/springboot/example/JedisConfig.class
