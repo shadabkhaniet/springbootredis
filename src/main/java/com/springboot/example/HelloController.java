@@ -8,6 +8,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.ScanParams;
@@ -31,6 +33,15 @@ public class HelloController {
   
 
         return "Greetings from Spring Boot!";
+    }
+
+    @RequestMapping("/jsontest") 
+    public @ResponseBody Map<String, String> callSomething () {
+        
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("url", "http://www.leveluplunch.com");
+        
+        return map;
     }
 
 }
