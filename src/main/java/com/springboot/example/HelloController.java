@@ -30,19 +30,19 @@ public class HelloController {
     }
 
     @RequestMapping(value="/add", method=RequestMethod.GET)
-    public String index(@RequestParam(value="Name", required=false) String name, @RequestParam(value="Age", required=false) String age,@RequestParam(value="Email", required=false) String email) {
+    public String index(@RequestParam(value="rate", required=false) Float rate, @RequestParam(value="Age", required=false) String age,@RequestParam(value="Email", required=false) String email) {
 
         System.err.println("in index method");
 // 	Jedis jedis = jedisPool.getResource();
 Map<String,String> userValues = new HashMap<String,String>();
-userValues.put("Name", name);
-userValues.put("Age", age);
-userValues.put("Email", email);
+userValues.put("Name", "testName");
+//userValues.put("Age", age);
+//userValues.put("Email", email);
 
- System.err.println("values "+name+" "+age+" "+email);
+ //System.err.println("values "+name+" "+age+" "+email);
 
 Jedis jedis = jedisPool.getResource();
-jedis.hmset("USER_"+email, userValues);
+jedis.hmset("Rate_"+rate, userValues);
 
 jedis.close();
 
